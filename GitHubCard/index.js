@@ -50,7 +50,7 @@ const followersArray = [];
 function Hub(Info){
   const cardContainer = document.createElement('div'),
   userImg= document.createElement('img'),
-  cardInfo= document.createElement('img'),
+  cardInfo= document.createElement('div'),
   name= document.createElement('h3'),
   userName= document.createElement('p'),
   location= document.createElement('p'),
@@ -58,6 +58,19 @@ function Hub(Info){
   gHubLink= document.createElement('a'),
   followers= document.createElement('p'),
   Bio=document.createElement('p')
+
+
+  cardContainer.appendChild(userImg)
+  cardContainer.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(userName)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(profile)
+  cardInfo.appendChild(gHubLink)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(Bio)
+
+  
 
 }
 
