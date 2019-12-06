@@ -3,7 +3,7 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get("https://api.github.com/users/jdanieldetes")
+axios.get("https://api.github.com/users/jdanieldetes");
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -47,33 +47,55 @@ const followersArray = [];
 </div>
 
 */
-function Hub(Info){
-  const cardContainer = document.createElement('div'),
-  userImg= document.createElement('img'),
-  cardInfo= document.createElement('div'),
-  name= document.createElement('h3'),
-  userName= document.createElement('p'),
-  location= document.createElement('p'),
-  profile= document.createElement('p'),
-  gHubLink= document.createElement('a'),
-  followers= document.createElement('p'),
-  Bio=document.createElement('p')
+function Hub(Info) {
+  const cardContainer = document.createElement("div"),
+    userImg = document.createElement("img"),
+    cardInfo = document.createElement("div"),
+    name = document.createElement("h3"),
+    userName = document.createElement("p"),
+    location = document.createElement("p"),
+    profile = document.createElement("p"),
+    gHubLink = document.createElement("a"),
+    followers = document.createElement("p"),
+    following = document.createElement("p"),
+    Bio = document.createElement("p");
 
+  cardContainer.appendChild(userImg);
+  cardContainer.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(userName);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  cardInfo.appendChild(gHubLink);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(Bio);
 
-  cardContainer.appendChild(userImg)
-  cardContainer.appendChild(cardInfo)
-  cardInfo.appendChild(name)
-  cardInfo.appendChild(userName)
-  cardInfo.appendChild(location)
-  cardInfo.appendChild(profile)
-  cardInfo.appendChild(gHubLink)
-  cardInfo.appendChild(followers)
-  cardInfo.appendChild(Bio)
+  cardContainer.classList.add("card");
+  cardInfo.classList.add("card-info");
+  name.classList.add("name");
+  userName.classList.add("username");
 
-  
+  userImg.src = info.avatar_url;
+  name.textContent = info.name;
+  userName.textContent = info.login;
+  location.textContent = `Location: ${info.location}`;
+  profile.textContent = "Profile:";
+  gHubLink.href = info.html_url;
+  followers.textContent = `Followers: ${info.followers}`;
+  following.textContent = `Following:${info.following}`;
+  Bio.textContent = info.Bio;
 
+  return cardContainer;
 }
 
+const cards = document
+  .querySelector(".cards")
+
+  .then(response => {
+    console.log(response);
+    cards.appendChild(Hub(response.info));
+  });
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
