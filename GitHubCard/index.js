@@ -103,3 +103,45 @@ const cards = document
   luishrd
   bigknell
 */
+
+
+axios.get(' https://lambda-times-backend.herokuapp.com/articles')
+.then((response)=>{
+    const cardscont= document.querySelector('.cards-Container')
+    const cardData = Object.values(response.data.articles)
+    cardData.forEach(element=>{
+        element.forach(article => {
+            cardscont.appendChild(newCard(article))
+        })
+    })
+})
+.catch((error)=>{
+    console.log(error)
+}) 
+
+function newCard(data) {
+    const cardContainer = document.createElement('div');
+    const cardHeadline = document.createElement('div')
+    const cardAuthor= document.createElement('div')
+    const imgContainer= document.createElement('div')
+    const cardImg= document.createElement('img')
+    const authorname= document.createElement('span')
+
+    cardContainer.classList.add('card')
+    cardHeadline.classList.add('headline')
+    cardAuthor.classList.add('author')
+    imgContainer.classList.add('img-container')
+
+
+    cardContainer.appendChild(cardHeadline)
+    cardContainer.appendChild(cardAuthor)
+    cardAuthor.appendChild(imgContainer)
+    cardAuthor.appendChild(authorname)
+    imgContainer.appendChild(cardImg)
+
+    authorname.textContent = data.authorName
+
+    cardImg.src= data.authorPhoto;
+
+        return cardContainer
+}
